@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecordNewVaccineBatch"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_view_healthcareCentre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:text="Healthcare Center"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@+id/list_view_vaccine"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_text_vaccine_id"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Vaccine ID"
+            android:gravity="center"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/edit_text_vaccine_batch_number"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Vaccine Batch Number"
+            android:gravity="center"
+            android:inputType="text"/>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/image_button_calendar_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/calendar"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                android:contentDescription="This is a calendar button"
+                tools:ignore = "HardcodedText"/>
+
+            <EditText
+                android:id="@+id/edit_text_expiry_date"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Expiry Date"
+                android:gravity="left"
+                android:layout_marginTop="26dp"
+                android:inputType="date"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edit_text_quantity"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Quantity"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADD"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
