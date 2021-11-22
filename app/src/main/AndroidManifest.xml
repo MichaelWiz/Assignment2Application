@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment2Application">
         <activity
+            android:name=".RequestVaccination"
+            android:exported="true" />
+        <activity
+            android:name=".signupPatient"
+            android:exported="true" />
+        <activity
+            android:name=".signupAdmin"
+            android:exported="true" />
+        <activity
+            android:name=".loginPage"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
