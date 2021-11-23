@@ -7,6 +7,12 @@
     tools:context=".loginPage"
     android:orientation="vertical"
     android:padding="16dp">
+    <Button
+        android:id="@+id/btn_back_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

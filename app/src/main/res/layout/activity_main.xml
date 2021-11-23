@@ -47,14 +47,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Admin"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_marginRight="5dp"/>
 
         <Button
             android:id="@+id/button_patient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Patient"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_marginLeft="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -71,6 +73,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linear_layout_button" />
 
         <TextView
+            android:id="@+id/text_view_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"

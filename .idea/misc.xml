@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Application/Assignment2Application/app/src/main/res/drawable/calendar.xml" value="0.3472222222222222" />
+        <entry key="..\:/Application/Assignment2Application/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3472222222222222" />
+        <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_admin_menu.xml" value="0.34692028985507245" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_admin_signup.xml" value="0.16621376811594202" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_login.xml" value="0.16847826086956522" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_login_page.xml" value="0.34692028985507245" />

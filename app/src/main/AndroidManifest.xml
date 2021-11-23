@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment2Application">
         <activity
+            android:name=".adminMenu"
+            android:exported="true" />
+        <activity
             android:name=".RequestVaccination"
             android:exported="true" />
         <activity

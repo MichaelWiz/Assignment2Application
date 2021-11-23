@@ -7,6 +7,12 @@
     tools:context=".signupPatient"
     android:orientation="vertical"
     android:padding="16dp">
+    <Button
+        android:id="@+id/btn_back_patient_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -128,6 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
+        android:enabled="false"
         android:text="Submit" />
 
 </LinearLayout>
