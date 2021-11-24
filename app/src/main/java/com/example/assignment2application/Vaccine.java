@@ -3,6 +3,7 @@ package com.example.assignment2application;
 import java.io.Serializable;
 
 public class Vaccine{
+    static int genVaccineID = 1;
     private String vaccineID;
     private String vaccineName;
     private String manufacturer;

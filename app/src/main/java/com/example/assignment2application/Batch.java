@@ -2,7 +2,7 @@ package com.example.assignment2application;
 
 import java.io.Serializable;
 
-public class Batch implements Serializable {
+public class Batch{
     private String batchNo;
     private String expiryDate;
     private int quantityAvailable;

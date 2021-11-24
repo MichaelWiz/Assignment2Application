@@ -41,9 +41,14 @@ public class AddNewVaccineType extends AppCompatActivity {
                 String vaccineID = editTextVaccineID.getText().toString();
                 String vaccineName = editTextVaccineName.getText().toString();
                 String manufacturer = editTextManufacturer.getText().toString();
-
-                Vaccine vaccine = new Vaccine(vaccineID,vaccineName,manufacturer);
-                upload(vaccine);
+                if (vaccineID.isEmpty()||vaccineName.isEmpty()||manufacturer.isEmpty()){
+                    Toast.makeText(AddNewVaccineType.this,
+                            "Added Successfully", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Vaccine vaccine = new Vaccine(vaccineID, vaccineName, manufacturer);
+                    upload(vaccine);
+                }
             }
         });
     }
@@ -56,7 +61,7 @@ public class AddNewVaccineType extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Toast.makeText(AddNewVaccineType.this,
                                 "Added Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AddNewVaccineType.this, AddNewCenter.class));
+                        startActivity(new Intent(AddNewVaccineType.this, RecordNewVaccineBatch.class));
                         finish();
                     }
                 })

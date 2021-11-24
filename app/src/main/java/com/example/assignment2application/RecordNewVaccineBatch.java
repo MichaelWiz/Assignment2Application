@@ -7,7 +7,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,13 +20,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -41,17 +40,13 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
     EditText editTextBatchNumber;
     EditText editTextQuantity;
     EditText dateTextView;
-    List<Vaccine> vaccinesArray;
+    List<String> vaccinesArray = new ArrayList<>();
     ListView listViewVaccine;
     ImageButton imageButtonCalender;
-    ListAdapter adapter;
     Button addBtn;
     Batch batch;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DatabaseReference databaseReference;
-    FirebaseDatabase firebaseDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,39 +57,10 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         editTextVaccineID = findViewById(R.id.edit_text_vaccine_id_record);
         editTextBatchNumber = findViewById(R.id.edit_text_vaccine_batch_number_record);
         editTextQuantity = findViewById(R.id.edit_text_quantity_record);
+        addBtn = findViewById(R.id.btn_add_record);
         imageButtonCalender = findViewById(R.id.image_button_calendar_icon);
-        /*databaseReference= firebaseDatabase.getReference("Vaccines");
 
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value=dataSnapshot.getValue(String.class);
-                vaccinesArray.add(value);
-                adapter = new ArrayAdapter<String>(RecordNewVaccineBatch.this, android.R.layout.simple_list_item_1, vaccinesArray);
-                listViewVaccine.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
+        getCurrentVaccine ();
 
         imageButtonCalender.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
@@ -106,86 +72,68 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        batch = (Batch) getIntent().getSerializableExtra("batch");
-
-        if (batch != null) {
-            editTextVaccineID.setText(batch.getVaccineID());
-            editTextBatchNumber.setText(batch.getBatchNo());
-            dateTextView.setText(batch.getExpiryDate());
-            editTextQuantity.setText(batch.getQuantityAvailable());
-        }
-
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!editTextVaccineID.getText().toString().isEmpty()) {
-                    if (batch == null) {
-                        int quantity = Integer.parseInt(editTextQuantity.getText().toString());
-                        DocumentReference newVacRef = db.collection("Batch").document();
-                        batch = new Batch(editTextVaccineID.getText().toString(),
-                                dateTextView.getText().toString(),quantity,
-                                editTextVaccineID.getText().toString());
-                        db.collection("Batch")
-                                .document(newVacRef.getId())
-                                .set(batch)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        finish();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(RecordNewVaccineBatch.this,
-                                                e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                    } else {
-                        DocumentReference vacRef = db.collection("Batch")
-                                .document(batch.getBatchNo());
-                        vacRef.update("batchNumber", editTextBatchNumber.getText().toString(),
-                                "vaccineID", editTextVaccineID.getText().toString(),
-                                "expiryDate",dateTextView.getText().toString(),"quantity",editTextQuantity.getText().toString())
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        finish();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(RecordNewVaccineBatch.this,
-                                                e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                if (!editTextVaccineID.getText().toString().isEmpty()&& !editTextBatchNumber.getText().toString().isEmpty()&&
+                        !editTextQuantity.getText().toString().isEmpty()&&!dateTextView.getText().toString().isEmpty()) {
+                    int quantity = Integer.parseInt(editTextQuantity.getText().toString());
+                    for (String v :vaccinesArray) {
+                        if (v.equalsIgnoreCase(editTextVaccineID.getText().toString())) {
+                            batch = new Batch(editTextVaccineID.getText().toString(),
+                                    dateTextView.getText().toString(), quantity,
+                                    editTextVaccineID.getText().toString());
+                            db.collection("Batch")
+                                    .document(editTextBatchNumber.getText().toString())
+                                    .set(batch)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(RecordNewVaccineBatch.this,
+                                                    "Added Successfully", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(RecordNewVaccineBatch.this, AddNewVaccineType.class));
+                                            finish();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(RecordNewVaccineBatch.this,
+                                                    e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                        else{
+                            editTextVaccineID.setText("");
+                            Toast.makeText(RecordNewVaccineBatch.this,
+                                    "Invalid vaccine ID", Toast.LENGTH_SHORT).show();
+                        }
                     }
+                }
+                else{
+                    Toast.makeText(RecordNewVaccineBatch.this,
+                            "Please fill in all text", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
 
-    private void getCurrentUserNotes () {
-        db.collection("Vaccines")
-                .whereEqualTo("userId", "vCuBHXckNMQGwNVTqwwi7IU5sBz2")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            vaccinesArray = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Vaccine vaccine = document.toObject(Vaccine.class);
-                                vaccinesArray.add(vaccine);
-                            }
-                            adapter = new ArrayAdapter<Vaccine>(RecordNewVaccineBatch.this,
-                                    android.R.layout.simple_list_item_1, vaccinesArray);
-                            listViewVaccine.setAdapter(adapter);
-                        }
-                    }
-                });
+    private void getCurrentVaccine () {
+        db.collection("Vaccine").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+
+                for (DocumentSnapshot snapshot : documentSnapshots)
+                {
+                    vaccinesArray.add(snapshot.getString("vaccineID"));
+
+                }
+                ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext()
+                        , android.R.layout.simple_selectable_list_item,vaccinesArray);
+                adapter.notifyDataSetChanged();
+                listViewVaccine.setAdapter(adapter);
+            }
+        });
     }
 }

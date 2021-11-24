@@ -38,8 +38,14 @@ public class AddNewCenter extends AppCompatActivity {
             public void onClick(View view) {
                 String hccName = editTextCenterName.getText().toString();
                 String address = editTextAddress.getText().toString();
-                HealthcareCentre hcc = new HealthcareCentre(hccName,address);
-                upload(hcc);
+                if(hccName.isEmpty()||address.isEmpty()){
+                    Toast.makeText(AddNewCenter.this,
+                            "Please enter all text", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    HealthcareCentre hcc = new HealthcareCentre(hccName, address);
+                    upload(hcc);
+                }
             }
         });
 
