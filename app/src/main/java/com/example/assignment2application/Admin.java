@@ -1,6 +1,8 @@
 package com.example.assignment2application;
 
 public class Admin {
+
+
     private String adminID;
     private String adminName;
     private String adminCentre;
@@ -9,6 +11,7 @@ public class Admin {
     private String adminEmail;
 
     static int staffID =1;
+    static String COLLECTION_NAME = "Admins";
 
     public Admin(String adminName, String adminCentre, String adminUsername, String adminPassword, String adminEmail){
         this.adminID = String.format("A%04d",  staffID++);;

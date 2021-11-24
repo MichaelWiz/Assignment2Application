@@ -19,6 +19,8 @@ import java.util.Random;
 
 public class signupAdmin extends AppCompatActivity {
 
+    public static Admin ADMIN;
+
     Button btnBack;
     EditText editTextAdminName;
     EditText editTextAdminCentreName;
@@ -67,6 +69,7 @@ public class signupAdmin extends AppCompatActivity {
             String adminEmail = editTextAdminEmail.getText().toString();
 
             admin = new Admin(adminName, adminCentre, adminUsername, adminPassword, adminEmail);
+            ADMIN = admin;
             uploadAdmin(admin);
         });
 
@@ -102,13 +105,14 @@ public class signupAdmin extends AppCompatActivity {
     };
 
     public void uploadAdmin(Admin admin){
-        db.collection("Admins")
+        db.collection(Admin.COLLECTION_NAME)
                 .document(editTextAdminUsername.getText().toString())
                 .set(admin)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         loginPage.USER_ID = admin.getAdminID();
+                        loginPage.ADMIN = admin;
                         Toast.makeText(signupAdmin.this, "Signup Success", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(signupAdmin.this, signupAdmin.class));
                         finish();

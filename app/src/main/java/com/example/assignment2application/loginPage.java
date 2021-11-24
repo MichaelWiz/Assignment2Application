@@ -26,7 +26,7 @@ import java.util.List;
 public class loginPage extends AppCompatActivity {
 
     public static Patient PATIENT;
-
+    public static Admin ADMIN;
 
     EditText editTextLoginUsername;
     EditText editTextLoginPassword;
