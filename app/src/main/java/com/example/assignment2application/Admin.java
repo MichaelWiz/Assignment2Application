@@ -1,18 +1,30 @@
 package com.example.assignment2application;
 
 public class Admin {
+    private String adminID;
     private String adminName;
     private String adminCentre;
     private String adminUsername;
     private String adminPassword;
     private String adminEmail;
 
+    static int staffID =1;
+
     public Admin(String adminName, String adminCentre, String adminUsername, String adminPassword, String adminEmail){
+        this.adminID = String.format("A%04d",  staffID++);;
         this.adminName = adminName;
         this.adminCentre = adminCentre ;
         this.adminUsername = adminUsername;
         this.adminPassword = adminPassword;
         this.adminEmail= adminEmail;
+    }
+
+    public String getAdminID() {
+        return adminID;
+    }
+
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
     }
 
     public String getAdminName() {

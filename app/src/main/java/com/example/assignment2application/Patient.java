@@ -1,11 +1,16 @@
 package com.example.assignment2application;
 
 public class Patient {
+
+    static String COLLECTION_NAME = "Patients";
+
     private String patientName;
     private String patientID;
     private String patientUsername;
     private String patientPassword;
     private String patientEmail;
+
+
 
     public Patient(String patientName, String patientID, String patientUsername, String patientPassword, String patientEmail){
         this.patientName = patientName;

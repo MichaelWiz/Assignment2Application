@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Random;
+
 public class signupAdmin extends AppCompatActivity {
 
     Button btnBack;
@@ -27,6 +29,7 @@ public class signupAdmin extends AppCompatActivity {
     Button btnSubmit;
     FirebaseFirestore db;
 
+    private Admin admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +58,15 @@ public class signupAdmin extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         btnSubmit.setOnClickListener((v)->{
+
+
             String adminName = editTextAdminName.getText().toString();
             String adminCentre = editTextAdminCentreName.getText().toString();
             String adminUsername = editTextAdminUsername.getText().toString();
             String adminPassword = editTextAdminPassword.getText().toString();
             String adminEmail = editTextAdminEmail.getText().toString();
 
-            Admin admin = new Admin(adminName, adminCentre, adminUsername, adminPassword, adminEmail);
+            admin = new Admin(adminName, adminCentre, adminUsername, adminPassword, adminEmail);
             uploadAdmin(admin);
         });
 
@@ -103,6 +108,7 @@ public class signupAdmin extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        loginPage.USER_ID = admin.getAdminID();
                         Toast.makeText(signupAdmin.this, "Signup Success", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(signupAdmin.this, signupAdmin.class));
                         finish();

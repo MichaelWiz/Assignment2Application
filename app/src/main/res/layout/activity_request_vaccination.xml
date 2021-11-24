@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:text="Vaccine Type:"
         android:textSize="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_request_logout"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_request_logout" />
 
     <Spinner
         android:id="@+id/spinner_request_vaccine"
@@ -75,26 +75,36 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner_request_vaccine_batch" />
 
     <LinearLayout
+        android:id="@+id/linear_layout_request_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_request_date" >
+        app:layout_constraintTop_toBottomOf="@+id/text_view_request_date">
 
         <EditText
             android:id="@+id/text_view_select_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dd/mm/yyyy"
-            android:textSize="18sp"
-            />
+            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/image_btn_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/calendar"/>
+            android:src="@drawable/calendar" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_request_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:onClick="submitRequestBtnClick"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout_request_date" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class signupPatient extends AppCompatActivity {
 
+    public static Patient PATIENT;
+
     Button btnBack;
     EditText editTextPatientName;
     EditText editTextPatientID;
@@ -65,6 +67,7 @@ public class signupPatient extends AppCompatActivity {
 
 
             Patient patient = new Patient(patientName, patientID, patientUsername, patientPassword, patientEmail);
+            PATIENT = patient;
             uploadPatient(patient);
         });
     }
@@ -99,14 +102,16 @@ public class signupPatient extends AppCompatActivity {
     };
 
     public void uploadPatient(Patient patient){
-        db.collection("Patients")
+        db.collection(Patient.COLLECTION_NAME)
                 .document(editTextPatientUsername.getText().toString())
                 .set(patient)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        loginPage.USER_ID = editTextPatientID.getText().toString();
+                        loginPage.PATIENT= patient;
                         Toast.makeText(signupPatient.this, "Signup Success", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(signupPatient.this, signupPatient.class));
+                        startActivity(new Intent(signupPatient.this, RequestVaccination.class));
                         finish();
                     }
                 })
