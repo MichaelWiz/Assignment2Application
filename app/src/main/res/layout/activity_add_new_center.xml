@@ -11,21 +11,49 @@
         android:layout_height="match_parent"
         android:padding="3dp"
         android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/text_view_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginBottom="16dp"
+            android:text="Center Name:"
+            android:textSize="18sp"/>
         <EditText
             android:id="@+id/edit_text_center_name_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="12sp"
             android:layout_marginBottom="3dp"
-            android:hint="Enter Healthcare Center Name"/>
+            android:hint="Enter Healthcare Center Name here"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_view_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginBottom="16dp"
+            android:text="Address         :"
+            android:textSize="18sp"/>
+
         <EditText
             android:id="@+id/edit_text_address_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="20dp"
-            android:hint="Enter Address"/>
+            android:textSize="12sp"
+            android:hint="Enter Address here"/>
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

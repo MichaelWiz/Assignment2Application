@@ -44,13 +44,17 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
     ListView listViewVaccine;
     ImageButton imageButtonCalender;
     Button addBtn;
+    Button backBtn;
     Batch batch;
+
+    static Admin ADMIN;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_new_vaccine_batch);
+
         dateTextView = findViewById(R.id.edit_text_expiry_date_record);
         textViewCenter = findViewById(R.id.text_view_healthcareCentre);
         listViewVaccine = findViewById(R.id.list_view_vaccine);
@@ -58,10 +62,13 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         editTextBatchNumber = findViewById(R.id.edit_text_vaccine_batch_number_record);
         editTextQuantity = findViewById(R.id.edit_text_quantity_record);
         addBtn = findViewById(R.id.btn_add_record);
+        backBtn = findViewById(R.id.btn_back_record);
         imageButtonCalender = findViewById(R.id.image_button_calendar_icon);
 
         getCurrentVaccine ();
+        //getAdmin();
 
+        //textViewCenter.setText(admin.getHealthcareName());
         imageButtonCalender.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -72,18 +79,30 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
             datePickerDialog.show();
         });
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecordNewVaccineBatch.this, AddNewCenter.class));
+            }
+        });
+
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!editTextVaccineID.getText().toString().isEmpty()&& !editTextBatchNumber.getText().toString().isEmpty()&&
                         !editTextQuantity.getText().toString().isEmpty()&&!dateTextView.getText().toString().isEmpty()) {
                     int quantity = Integer.parseInt(editTextQuantity.getText().toString());
-                    for (String v :vaccinesArray) {
-                        if (v.equalsIgnoreCase(editTextVaccineID.getText().toString())) {
-                            batch = new Batch(editTextVaccineID.getText().toString(),
-                                    dateTextView.getText().toString(), quantity,
-                                    editTextVaccineID.getText().toString());
-                            db.collection("Batch")
+
+                    String batchNumber = editTextBatchNumber.getText().toString();
+                    String date = dateTextView.getText().toString();
+                    int qty = quantity;
+                    String vaccineId = editTextVaccineID.getText().toString();
+
+                    for(String v:vaccinesArray) {
+                        if(v.equalsIgnoreCase(vaccineId)) {
+                            batch = new Batch(batchNumber, date, qty, vaccineId,ADMIN.getAdminName());
+
+                            db.collection("Batches")
                                     .document(editTextBatchNumber.getText().toString())
                                     .set(batch)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -91,7 +110,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(RecordNewVaccineBatch.this,
                                                     "Added Successfully", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(RecordNewVaccineBatch.this, AddNewVaccineType.class));
+                                            startActivity(new Intent(RecordNewVaccineBatch.this, AddNewCenter.class));
                                             finish();
                                         }
                                     })
@@ -102,8 +121,9 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
                                                     e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
+                            break;
                         }
-                        else{
+                        else {
                             editTextVaccineID.setText("");
                             Toast.makeText(RecordNewVaccineBatch.this,
                                     "Invalid vaccine ID", Toast.LENGTH_SHORT).show();
@@ -120,7 +140,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
     }
 
     private void getCurrentVaccine () {
-        db.collection("Vaccine").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("Vaccines").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 
@@ -136,4 +156,22 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
             }
         });
     }
+
+    /*private void getAdmin () {
+        db.collection("Admins")
+                .whereEqualTo("adminID", loginPage.USER_ID)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                            Admin admin = documentSnapshot.toObject(Admin.class);
+                            ADMIN = admin;
+                            finish();
+                            break;
+                        }
+                    }
+              });
+   }*/
+
 }

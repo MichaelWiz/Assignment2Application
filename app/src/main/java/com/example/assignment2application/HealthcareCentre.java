@@ -1,20 +1,20 @@
 package com.example.assignment2application;
 
 public class HealthcareCentre {
-    private String centerName;
+    private String centreName;
     private String address;
 
     public HealthcareCentre(String centerName, String address) {
-        this.centerName = centerName;
+        this.centreName = centerName;
         this.address = address;
     }
 
-    public String getCenterName() {
-        return centerName;
+    public String getCentreName() {
+        return centreName;
     }
 
-    public void setCenterName(String centerName) {
-        this.centerName = centerName;
+    public void setCentreName(String centerName) {
+        this.centreName = centerName;
     }
 
     public String getAddress() {
@@ -27,6 +27,6 @@ public class HealthcareCentre {
 
     @Override
     public String toString() {
-        return centerName;
+        return centreName;
     }
 }

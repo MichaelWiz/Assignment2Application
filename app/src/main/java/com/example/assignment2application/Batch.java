@@ -5,8 +5,18 @@ import java.io.Serializable;
 public class Batch{
     private String batchNo;
     private String expiryDate;
-    private int quantityAvailable;
-    private int quantityAdministered;
+    private long quantityAvailable;
+    private long quantityAdministered;
+    private String centreName;
+
+    public String getCentreName() {
+        return centreName;
+    }
+
+    public void setCentreName(String centreName) {
+        this.centreName = centreName;
+    }
+
     private String vaccineID;
 
     public String getBatchNo() {
@@ -25,7 +35,7 @@ public class Batch{
         this.expiryDate = expiryDate;
     }
 
-    public int getQuantityAvailable() {
+    public long getQuantityAvailable() {
         return quantityAvailable;
     }
 
@@ -33,11 +43,11 @@ public class Batch{
         this.quantityAvailable = quantityAvailable;
     }
 
-    public int getQuantityAdministered() {
+    public long getQuantityAdministered() {
         return quantityAdministered;
     }
 
-    public void setQuantityAdministered(int quantityAdministered) {
+    public void setQuantityAdministered(long quantityAdministered) {
         this.quantityAdministered = quantityAdministered;
     }
 
@@ -49,10 +59,26 @@ public class Batch{
         this.vaccineID = vaccineID;
     }
 
-    public Batch(String batchNo, String expiryDate, int quantityAvailable, String vaccineID) {
+    public Batch(){
+
+    }
+
+    public Batch(String batchNo,String centreName,String expiryDate,String vaccineID
+    ,long quantityAdministered,long quantityAvailable){
+        this.batchNo = batchNo;
+        this.expiryDate = expiryDate;
+        setCentreName(centreName);
+        setQuantityAdministered(quantityAdministered);
+        this.quantityAvailable = quantityAvailable;
+        setVaccineID(vaccineID);
+
+    }
+
+    public Batch(String batchNo, String expiryDate, int quantityAvailable, String vaccineID,String centreName) {
         this.batchNo = batchNo;
         this.expiryDate = expiryDate;
         this.quantityAvailable = quantityAvailable;
+        setCentreName(centreName);
         setVaccineID(vaccineID);
     }
 

@@ -15,6 +15,16 @@
         android:text="Healthcare Center"
         android:textSize="24sp"
         android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/text_view_list_vaccine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginBottom="16dp"
+        android:text="List of Vaccine:"
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
+        android:textStyle="italic"/>
 
     <ListView
         android:id="@+id/list_view_vaccine"
@@ -28,24 +38,57 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edit_text_vaccine_id_record"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter Vaccine ID"
-            android:gravity="center"
-            android:inputType="text"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/edit_text_vaccine_batch_number_record"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter Vaccine Batch Number"
-            android:gravity="center"
-            android:inputType="text"/>
+            <TextView
+                android:id="@+id/text_view_vaccine_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginBottom="16dp"
+                android:text="Vaccine ID      :"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/edit_text_vaccine_id_record"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:hint="Enter Vaccine ID here"
+                android:gravity="center"
+                android:inputType="text"/>
+
+
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="270dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_batch_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginBottom="16dp"
+                android:text="Batch Number:"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/edit_text_vaccine_batch_number_record"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:hint="Enter Vaccine Batch Number here"
+                android:gravity="center"
+                android:inputType="text"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -62,21 +105,37 @@
 
             <EditText
                 android:id="@+id/edit_text_expiry_date_record"
-                android:layout_width="165dp"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:hint="Click Calendar to \nchoose Expiry Date"
+                android:textSize="12sp"
+                android:hint="Click Calendar to choose Expiry Date"
                 android:gravity="left"
                 android:enabled="false"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="35dp"
                 android:inputType="date"/>
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/edit_text_quantity_record"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter Quantity"
-            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginBottom="16dp"
+                android:text="Quantity           :"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/edit_text_quantity_record"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:hint="Enter Quantity here"
+                android:gravity="center"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

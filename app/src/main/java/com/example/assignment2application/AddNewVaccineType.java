@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,7 +14,14 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddNewVaccineType extends AppCompatActivity {
 
@@ -22,6 +30,8 @@ public class AddNewVaccineType extends AppCompatActivity {
     EditText editTextManufacturer;
     Vaccine vaccine;
     Button addBtn;
+    Button backBtn;
+    List<String> vaccinesArray = new ArrayList<>();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -29,11 +39,13 @@ public class AddNewVaccineType extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_vaccine_type);
+        getCurrentVaccine();
 
         editTextVaccineID = findViewById(R.id.edit_text_vaccine_id);
         editTextVaccineName =findViewById(R.id.edit_text_vaccine_name);
         editTextManufacturer = findViewById(R.id.edit_text_manufacturer);
         addBtn = findViewById(R.id.btn_add_vaccine);
+        backBtn = findViewById(R.id.btn_back_vaccine);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,17 +55,37 @@ public class AddNewVaccineType extends AppCompatActivity {
                 String manufacturer = editTextManufacturer.getText().toString();
                 if (vaccineID.isEmpty()||vaccineName.isEmpty()||manufacturer.isEmpty()){
                     Toast.makeText(AddNewVaccineType.this,
-                            "Added Successfully", Toast.LENGTH_SHORT).show();
+                            "Please enter all text", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Vaccine vaccine = new Vaccine(vaccineID, vaccineName, manufacturer);
-                    upload(vaccine);
+                    if (vaccinesArray == null ){
+                        upload(vaccine);
+                        Toast.makeText(AddNewVaccineType.this,
+                                "Added Successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        for (String v:vaccinesArray){
+                            if (!v.equalsIgnoreCase(vaccineID)) {
+                                vaccine = new Vaccine(vaccineID, vaccineName, manufacturer);
+                                upload(vaccine);
+                                Toast.makeText(AddNewVaccineType.this,
+                                        "Added Successfully!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
                 }
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddNewVaccineType.this, AddNewCenter.class));
+                finish();
             }
         });
     }
     private void upload(Vaccine vaccine) {
-        db.collection("Vaccine")
+        db.collection("Vaccines")
                 .document(editTextVaccineID.getText().toString())
                 .set(vaccine)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -69,5 +101,18 @@ public class AddNewVaccineType extends AppCompatActivity {
                     Toast.makeText(AddNewVaccineType.this,
                             "Failure", Toast.LENGTH_SHORT).show();
                 });
+    }
+    private void getCurrentVaccine () {
+        db.collection("Vaccines").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+
+                for (DocumentSnapshot snapshot : documentSnapshots)
+                {
+                    vaccinesArray.add(snapshot.getString("vaccineID"));
+
+                }
+            }
+        });
     }
 }
