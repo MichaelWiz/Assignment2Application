@@ -30,6 +30,7 @@ public class signupPatient extends AppCompatActivity {
     Button btnSubmit;
     FirebaseFirestore db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,10 +89,14 @@ public class signupPatient extends AppCompatActivity {
             String patientPasswordInput = editTextPatientPassword.getText().toString().trim();
             String patientConfirmPasswordInput = editTextPatientConfirmPassword.getText().toString().trim();
             String patientEmailInput = editTextPatientEmail.getText().toString().trim();
+            if (patientConfirmPasswordInput.equals(patientPasswordInput)){
+                btnSubmit.setEnabled(!patientNameInput.isEmpty() && !patientIDInput.isEmpty()
+                        && !patientUsernameInput.isEmpty() && !patientPasswordInput.isEmpty()
+                        && !patientConfirmPasswordInput.isEmpty() && !patientEmailInput.isEmpty());
+            }
 
-            btnSubmit.setEnabled(!patientNameInput.isEmpty() && !patientIDInput.isEmpty()
-                    && !patientUsernameInput.isEmpty() && !patientPasswordInput.isEmpty()
-                    && !patientConfirmPasswordInput.isEmpty() && !patientEmailInput.isEmpty());
+
+
 
         }
 

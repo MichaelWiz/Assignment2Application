@@ -32,6 +32,7 @@ public class loginPage extends AppCompatActivity {
     EditText editTextLoginPassword;
     Button btnLogin;
     Button btnBack;
+    List<Admin> adminArray = new ArrayList<Admin>();
     List<Patient> patientArray = new ArrayList<Patient>();
     public static String USER_ID;
 
@@ -50,6 +51,16 @@ public class loginPage extends AppCompatActivity {
                     if (p.getPatientUsername().equalsIgnoreCase(editTextLoginUsername.getText().toString())
                             && p.getPatientPassword().equalsIgnoreCase(editTextLoginPassword.getText().toString())){
                         startActivity(new Intent(loginPage.this, RequestVaccination.class));
+                        finish();
+                        break;
+                    }else{
+                        Toast.makeText(loginPage.this, "Wrong Username or Password!",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                for (Admin a: adminArray){
+                    if (a.getAdminUsername().equalsIgnoreCase(editTextLoginUsername.getText().toString())
+                            && a.getAdminPassword().equalsIgnoreCase(editTextLoginPassword.getText().toString())){
+                        startActivity(new Intent(loginPage.this, adminMenu.class));
                         finish();
                         break;
                     }else{
@@ -77,6 +88,15 @@ public class loginPage extends AppCompatActivity {
                 for (DocumentSnapshot snapshot : documentSnapshots){
                     patientArray.add(new Patient(snapshot.getString("patientName"),snapshot.getString("patientID")
                             ,snapshot.getString("patientUsername"),snapshot.getString("patientPassword"),snapshot.getString("patientEmail")));
+                }
+            }
+        });
+        db.collection("Admins").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
+                for (DocumentSnapshot snapshot : documentSnapshots){
+                    adminArray.add(new Admin(snapshot.getString("adminName"),snapshot.getString("adminID")
+                            ,snapshot.getString("adminUsername"),snapshot.getString("adminPassword"),snapshot.getString("adminEmail")));
                 }
             }
         });

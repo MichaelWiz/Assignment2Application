@@ -15,13 +15,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
+import java.sql.Struct;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -38,7 +47,7 @@ public class RequestVaccination extends AppCompatActivity {
     Button btnSubmit;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     android.app.DatePickerDialog.OnDateSetListener onDateSetListener;
-
+    //List<Vaccine>
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,16 +117,32 @@ public class RequestVaccination extends AppCompatActivity {
     }
 
     private void openDialog(){
-        List<String> vaccine = Arrays.asList("Pfizer", "Sinovac");
-        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, vaccine);
+        List<String> vaccineList =  new ArrayList<>();//Arrays.asList("Pfizer", "Sinovac");
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, vaccineList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinnerVaccine.setAdapter(adapter);
-
+        db.collection("Vaccines")
+                .whereEqualTo("vaccineID", Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            vaccineList.add("Select Vaccine Type");
+                            for (QueryDocumentSnapshot document :task.getResult()){
+                                String vaccine = document.getString("vaccineID");
+                                vaccineList.add(vaccine);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
         spinnerVaccine.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (spinnerVaccine.getSelectedItem() != "-"){
+                String selectVaccine = adapterView.getItemAtPosition(i).toString();
+                //LinearLayout batchInfo = findViewById(R.id.linear_layout_vaccine_list);
+                if (spinnerVaccine.getSelectedItem() != "Select Vaccine "){
                     btnSubmit.setEnabled(true);
                 }
             }

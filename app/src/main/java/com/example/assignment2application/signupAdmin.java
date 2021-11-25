@@ -1,5 +1,6 @@
 package com.example.assignment2application;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,14 +8,22 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class signupAdmin extends AppCompatActivity {
@@ -28,8 +37,11 @@ public class signupAdmin extends AppCompatActivity {
     EditText editTextAdminPassword;
     EditText editTextAdminConfirmPassword;
     EditText editTextAdminEmail;
+    ListView listViewCentreList;
     Button btnSubmit;
     FirebaseFirestore db;
+
+    List<String> centreList = new ArrayList<>();
 
     private Admin admin;
 
@@ -49,6 +61,7 @@ public class signupAdmin extends AppCompatActivity {
         });
 
         initializeView();
+        viewCentreList();
 
         editTextAdminName.addTextChangedListener(signupTextWatcher);
         editTextAdminCentreName.addTextChangedListener(signupTextWatcher);
@@ -75,6 +88,22 @@ public class signupAdmin extends AppCompatActivity {
 
     }
 
+    private void viewCentreList(){
+        db.collection("HealthcareCentres").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
+                for (DocumentSnapshot snapshot: documentSnapshots){
+                    centreList.add(snapshot.getString("centerName"));
+                }
+                ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext()
+                        , android.R.layout.simple_selectable_list_item, centreList);
+                adapter.notifyDataSetChanged();
+                listViewCentreList.setAdapter(adapter);
+
+            }
+        });
+    }
+
 
     private TextWatcher signupTextWatcher = new TextWatcher() {
         @Override
@@ -91,10 +120,11 @@ public class signupAdmin extends AppCompatActivity {
             String adminConfirmPasswordInput = editTextAdminConfirmPassword.getText().toString().trim();
             String adminEmailInput = editTextAdminEmail.getText().toString().trim();
 
-            btnSubmit.setEnabled(!adminNameInput.isEmpty() && !adminCentreInput.isEmpty()
-                    && !adminUsernameInput.isEmpty() && !adminPasswordInput.isEmpty()
-                    && !adminConfirmPasswordInput.isEmpty() && !adminEmailInput.isEmpty());
-
+            if (adminConfirmPasswordInput.equals(adminPasswordInput)){
+                btnSubmit.setEnabled(!adminNameInput.isEmpty() && !adminCentreInput.isEmpty()
+                        && !adminUsernameInput.isEmpty() && !adminPasswordInput.isEmpty()
+                        && !adminConfirmPasswordInput.isEmpty() && !adminEmailInput.isEmpty());
+            }
 
         }
 
@@ -114,7 +144,7 @@ public class signupAdmin extends AppCompatActivity {
                         loginPage.USER_ID = admin.getAdminID();
                         loginPage.ADMIN = admin;
                         Toast.makeText(signupAdmin.this, "Signup Success", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(signupAdmin.this, signupAdmin.class));
+                        startActivity(new Intent(signupAdmin.this, adminMenu.class));
                         finish();
                     }
                 })
@@ -129,6 +159,7 @@ public class signupAdmin extends AppCompatActivity {
         editTextAdminUsername = findViewById(R.id.edit_text_admin_signup_username);
         editTextAdminPassword = findViewById(R.id.edit_text_admin_signup_password);
         editTextAdminEmail = findViewById(R.id.edit_text_admin_signup_email);
+        listViewCentreList = findViewById(R.id.list_view_centre_list);
         btnSubmit = findViewById(R.id.btn_submit_admin_signup);
     }
 
