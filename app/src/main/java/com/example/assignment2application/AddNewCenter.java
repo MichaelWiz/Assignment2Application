@@ -38,7 +38,7 @@ public class AddNewCenter extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddNewCenter.this, RecordNewVaccineBatch.class));
+                startActivity(new Intent(AddNewCenter.this, AddNewVaccineType.class));
             }
         });
 

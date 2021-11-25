@@ -68,7 +68,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         getCurrentVaccine ();
         //getAdmin();
 
-        //textViewCenter.setText(admin.getHealthcareName());
+        //textViewCenter.setText(ADMIN.getHealthcareCentre());
         imageButtonCalender.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);

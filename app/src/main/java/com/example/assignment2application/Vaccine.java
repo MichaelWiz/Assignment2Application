@@ -6,9 +6,10 @@ public class Vaccine{
     private String vaccineID;
     private String vaccineName;
     private String manufacturer;
+    static int vaccineNum;
 
-    public Vaccine(String vaccineID, String vaccineName, String manufacturer) {
-        this.vaccineID = vaccineID;
+    public Vaccine(String vaccineName, String manufacturer) {
+        setVaccineID(String.format("v"+(++vaccineNum)));
         this.vaccineName = vaccineName;
         this.manufacturer = manufacturer;
     }

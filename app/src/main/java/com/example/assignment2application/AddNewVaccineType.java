@@ -25,7 +25,6 @@ import java.util.List;
 
 public class AddNewVaccineType extends AppCompatActivity {
 
-    EditText editTextVaccineID;
     EditText editTextVaccineName;
     EditText editTextManufacturer;
     Vaccine vaccine;
@@ -41,7 +40,6 @@ public class AddNewVaccineType extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_vaccine_type);
         getCurrentVaccine();
 
-        editTextVaccineID = findViewById(R.id.edit_text_vaccine_id);
         editTextVaccineName =findViewById(R.id.edit_text_vaccine_name);
         editTextManufacturer = findViewById(R.id.edit_text_manufacturer);
         addBtn = findViewById(R.id.btn_add_vaccine);
@@ -50,10 +48,11 @@ public class AddNewVaccineType extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String vaccineID = editTextVaccineID.getText().toString();
                 String vaccineName = editTextVaccineName.getText().toString();
                 String manufacturer = editTextManufacturer.getText().toString();
-                if (vaccineID.isEmpty()||vaccineName.isEmpty()||manufacturer.isEmpty()){
+                Vaccine.vaccineNum = vaccinesArray.size();
+                vaccine = new Vaccine(vaccineName, manufacturer);
+                if (vaccineName.isEmpty()||manufacturer.isEmpty()){
                     Toast.makeText(AddNewVaccineType.this,
                             "Please enter all text", Toast.LENGTH_SHORT).show();
                 }
@@ -65,8 +64,7 @@ public class AddNewVaccineType extends AppCompatActivity {
                     }
                     else{
                         for (String v:vaccinesArray){
-                            if (!v.equalsIgnoreCase(vaccineID)) {
-                                vaccine = new Vaccine(vaccineID, vaccineName, manufacturer);
+                            if (!v.equalsIgnoreCase(vaccine.getVaccineID())) {
                                 upload(vaccine);
                                 Toast.makeText(AddNewVaccineType.this,
                                         "Added Successfully!", Toast.LENGTH_SHORT).show();
@@ -86,7 +84,7 @@ public class AddNewVaccineType extends AppCompatActivity {
     }
     private void upload(Vaccine vaccine) {
         db.collection("Vaccines")
-                .document(editTextVaccineID.getText().toString())
+                .document(vaccine.getVaccineID())
                 .set(vaccine)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
