@@ -4,15 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/drawable/calendar.xml" value="0.3472222222222222" />
+        <entry key="..\:/Application/Assignment2Application/app/src/main/res/drawable/gradle_bg.xml" value="0.3769230769230769" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3472222222222222" />
-        <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_add_new_center.xml" value="0.36666666666666664" />
-        <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_add_new_vaccine_type.xml" value="0.36666666666666664" />
+        <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_add_new_center.xml" value="0.4" />
+        <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_add_new_vaccine_type.xml" value="0.4" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_admin_menu.xml" value="0.34692028985507245" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_admin_signup.xml" value="0.16621376811594202" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_login.xml" value="0.16847826086956522" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_login_page.xml" value="0.34692028985507245" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_manage_vaccination.xml" value="0.17831813576494426" />
+        <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_manage_vaccination.xml" value="0.4" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_record_new_vaccine_batch.xml" value="0.36666666666666664" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_request_vaccination.xml" value="0.34692028985507245" />
         <entry key="..\:/Application/Assignment2Application/app/src/main/res/layout/activity_signup_admin.xml" value="0.34692028985507245" />

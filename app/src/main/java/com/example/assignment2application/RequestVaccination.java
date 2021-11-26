@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -101,6 +103,7 @@ public class RequestVaccination extends AppCompatActivity {
         spinnerVaccine.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
                 String vaccineSelection = spinnerVaccine.getSelectedItem().toString();
                 if (vaccineSelection.equals("Select Vaccine")){
                     btnSubmit.setEnabled(false);
@@ -108,6 +111,7 @@ public class RequestVaccination extends AppCompatActivity {
                     spinnerCentre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
                             String centreSelection = spinnerCentre.getSelectedItem().toString();
                             if (centreSelection.equals("Select Healthcare Centre")){
                                 btnSubmit.setEnabled(false);
@@ -115,6 +119,7 @@ public class RequestVaccination extends AppCompatActivity {
                                 spinnerVaccineBatch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                        ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
                                         String vaccineBatchSelection = spinnerVaccineBatch.getSelectedItem().toString();
                                         if (vaccineBatchSelection.equals("Select Vaccine Batch")){
                                             btnSubmit.setEnabled(false);
@@ -251,10 +256,10 @@ public class RequestVaccination extends AppCompatActivity {
         vaccination.setVaccinationID(UUID.randomUUID().toString());
         vaccination.setVaccineType(spinnerVaccine.getSelectedItem().toString());
         vaccination.setCentre(spinnerCentre.getSelectedItem().toString());
-        vaccination.setVaccineBatch(spinnerVaccineBatch.getSelectedItem().toString());
+        vaccination.setBatchNo(spinnerVaccineBatch.getSelectedItem().toString());
         vaccination.setAppointmentDate(datePicker.getText().toString());
         vaccination.setStatus("Pending");
-        vaccination.setRemark("");
+        vaccination.setRemarks("");
 
         db.collection("Vaccination")
                 .document()

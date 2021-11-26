@@ -82,9 +82,9 @@ public class ManageVaccinationActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Vaccination vaccination = documentSnapshot.toObject(Vaccination.class);
-                        vaccinationStatusTextView.setText(vaccination.Status);
-                        String status = vaccination.Status;
-                        usernameTextView.setText(vaccination.Username);
+                        vaccinationStatusTextView.setText(vaccination.status);
+                        String status = vaccination.status;
+                        usernameTextView.setText(vaccination.username);
                         DocumentReference docRef3 = db.collection("Patients")
                                 .document(usernameTextView.getText().toString());
                         docRef3.get()

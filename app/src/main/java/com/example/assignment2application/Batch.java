@@ -1,26 +1,14 @@
 package com.example.assignment2application;
 
 import java.io.Serializable;
-
 public class Batch{
     public String batchNo;
     public String expiryDate;
     public long quantityAvailable;
     public long quantityAdministered;
     public String centreName;
-
-    public String getCentreName() {
-        return centreName;
-    }
-
-    public void setCentreName(String centreName) {
-        this.centreName = centreName;
-    }
-
     public String vaccineID;
-
-    public void setQuantityAvailable(long quantityAvailable) {
-        this.quantityAvailable = quantityAvailable;
+    public Batch() {
     }
 
     public String getBatchNo() {
@@ -31,28 +19,20 @@ public class Batch{
         this.batchNo = batchNo;
     }
 
+    public String getCentreName() {
+        return centreName;
+    }
+
+    public void setCentreName(String centreName) {
+        this.centreName = centreName;
+    }
+
     public String getExpiryDate() {
         return expiryDate;
     }
 
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
-    }
-
-    public long getQuantityAvailable() {
-        return quantityAvailable;
-    }
-
-    public void setQuantityAvailable(int quantityAvailable) {
-        this.quantityAvailable = quantityAvailable;
-    }
-
-    public long getQuantityAdministered() {
-        return quantityAdministered;
-    }
-
-    public void setQuantityAdministered(long quantityAdministered) {
-        this.quantityAdministered = quantityAdministered;
     }
 
     public String getVaccineID() {
@@ -63,22 +43,33 @@ public class Batch{
         this.vaccineID = vaccineID;
     }
 
-    public Batch(){
+    public long getQuantityAdministered() {
+        return quantityAdministered;
+    }
 
+    public void setQuantityAdministered(long quantityAdministered) {
+        this.quantityAdministered = quantityAdministered;
+    }
+
+    public long getQuantityAvailable() {
+        return quantityAvailable;
+    }
+
+    public void setQuantityAvailable(long quantityAvailable) {
+        this.quantityAvailable = quantityAvailable;
     }
 
     public Batch(String batchNo,String centreName,String expiryDate,String vaccineID
-    ,long quantityAdministered,long quantityAvailable){
+            ,long quantityAdministered,long quantityAvailable){
         setBatchNo(batchNo);
         setExpiryDate(expiryDate);
         setCentreName(centreName);
         setQuantityAdministered(quantityAdministered);
         this.quantityAvailable = quantityAvailable;
         setVaccineID(vaccineID);
-
     }
 
-    public Batch(String batchNo, String expiryDate, int quantityAvailable, String vaccineID,String centreName) {
+    public Batch(String batchNo, String expiryDate, long quantityAvailable, String vaccineID,String centreName) {
         this.batchNo = batchNo;
         this.expiryDate = expiryDate;
         this.quantityAvailable = quantityAvailable;

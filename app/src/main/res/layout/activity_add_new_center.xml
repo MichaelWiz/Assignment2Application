@@ -59,6 +59,7 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/white"
             android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:textSize="12sp"
             android:hint="Enter Address here"/>
     </LinearLayout>

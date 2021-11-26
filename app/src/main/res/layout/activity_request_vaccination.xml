@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="4dp"
+    android:layout_margin="2dp"
     android:paddingTop="12dp"
-    tools:context=".RequestVaccination">
+    tools:context=".RequestVaccination"
+    android:background="@drawable/gradle_bg">
 
 
 
@@ -26,14 +27,18 @@
         android:text="Vaccine Type:"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_request_logout" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_request_logout"
+        android:textColor="@color/white"/>
 
     <Spinner
         android:id="@+id/spinner_request_vaccine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="Select Vaccine Type"
-        app:layout_constraintTop_toBottomOf="@id/text_view_request_vaccine" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_request_vaccine"
+        android:backgroundTint="@color/white"
+
+        />
 
     <TextView
         android:id="@+id/text_view_request_centre"
@@ -42,14 +47,16 @@
         android:text="Healthcare Centre:"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_request_vaccine" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_request_vaccine"
+        android:textColor="@color/white"/>
 
     <Spinner
         android:id="@+id/spinner_request_centre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="Select Healthcare Centre"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_request_centre" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_request_centre"
+        android:backgroundTint="@color/white" />
 
     <TextView
         android:id="@+id/text_view_request_vaccine_batch"
@@ -58,14 +65,16 @@
         android:text="Vaccine Batch No.:"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_request_centre" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_request_centre"
+        android:textColor="@color/white"/>
 
     <Spinner
         android:id="@+id/spinner_request_vaccine_batch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="Select Vaccine Batch No"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_request_vaccine_batch" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_request_vaccine_batch"
+        android:backgroundTint="@color/white"/>
 
     <TextView
         android:id="@+id/text_view_request_date"
@@ -74,7 +83,8 @@
         android:text="Appointment Date:"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_request_vaccine_batch" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_request_vaccine_batch"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:id="@+id/linear_layout_request_date"
@@ -88,13 +98,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dd/mm/yyyy"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"/>
 
         <ImageButton
             android:id="@+id/image_btn_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/calendar" />
+            android:src="@drawable/calendar"
+            android:backgroundTint="@color/transparent"/>
 
     </LinearLayout>
 

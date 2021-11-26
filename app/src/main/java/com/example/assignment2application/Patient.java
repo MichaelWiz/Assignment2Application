@@ -10,6 +10,9 @@ public class Patient {
     public String patientPassword;
     public String patientEmail;
 
+    public Patient() {
+    }
+
     public static String getCollectionName() {
         return COLLECTION_NAME;
     }

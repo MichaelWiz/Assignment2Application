@@ -13,8 +13,8 @@
         <activity
             android:name=".ViewVaccineBatchActivity"
             android:exported="true"
-            android:label="Manage Vaccination"
-            android:parentActivityName=".ViewVaccineBatchActivity"/>
+            android:label="View Vaccine Batch"
+            android:parentActivityName=".adminMenu"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -27,18 +27,23 @@
         </activity>
         <activity
             android:name=".adminMenu"
+            android:label="Admin Menu"
             android:exported="true" />
         <activity
             android:name=".RequestVaccination"
+            android:label="Request Vaccination Page"
             android:exported="true" />
         <activity
             android:name=".signupPatient"
+            android:label="Patient Sign Up Form"
             android:exported="true" />
         <activity
             android:name=".signupAdmin"
+            android:label="Admin Sign Up Form"
             android:exported="true" />
         <activity
             android:name=".loginPage"
+            android:label="Login Page"
             android:exported="true" />
         <activity
             android:label="@string/add_vaccine_name"
@@ -66,7 +71,7 @@
             android:name=".ManageVaccinationActivity"
             android:exported="true"
             android:label="Manage Vaccination"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".ViewVaccineBatchActivity"/>
 
 
     </application>

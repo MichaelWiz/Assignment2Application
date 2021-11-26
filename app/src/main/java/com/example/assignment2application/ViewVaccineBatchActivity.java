@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,7 +55,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view_vaccine_batch);
         db = FirebaseFirestore.getInstance();
 
         progressDialog = new ProgressDialog(this);
@@ -111,6 +112,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
         batchNumberSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
                 String selectedBatch = batchNumberSpinner.getSelectedItem().toString();
                 LinearLayout batchInfo = findViewById(R.id.linear_layout_for_batch_info);
                 if (selectedBatch.equals("Select batch number") ){
@@ -185,6 +187,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
                             vaccinationNumberSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 @Override
                                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
                                     String selectedVaccinationNo = vaccinationNumberSpinner.getSelectedItem().toString();
                                     if (selectedVaccinationNo == "Select vaccination number"){
                                         manageVaccinationBtn.setEnabled(false);
@@ -196,7 +199,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                                 Vaccination selectedVaccinationNum = documentSnapshot.toObject(Vaccination.class);
-                                                selectedVaccination.setText(selectedVaccinationNum.VaccinationID);
+                                                selectedVaccination.setText(selectedVaccinationNum.vaccinationID);
 
                                             }
                                         });

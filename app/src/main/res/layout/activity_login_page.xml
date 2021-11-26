@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradle_bg"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".loginPage">
@@ -24,13 +25,17 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:text="Username:"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edit_text_login_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Username" />
+            android:backgroundTint="@color/white"
+            android:hint="Enter Username"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
     </LinearLayout>
 
     <LinearLayout
@@ -43,21 +48,26 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:text="Password:"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edit_text_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:hint="Enter Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
     </LinearLayout>
 
     <CheckBox
         android:id="@+id/checkbox_show_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Password" />
+        android:text="Show Password"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btn_login"
