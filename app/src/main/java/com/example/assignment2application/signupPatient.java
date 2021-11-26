@@ -21,7 +21,6 @@ public class signupPatient extends AppCompatActivity {
 
     public static Patient PATIENT;
 
-    Button btnBack;
     EditText editTextPatientName;
     EditText editTextPatientID;
     EditText editTextPatientUsername;
@@ -37,15 +36,6 @@ public class signupPatient extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_patient);
         editTextPatientConfirmPassword = findViewById(R.id.edit_text_patient_signup_confirm_password);
-        btnBack = findViewById(R.id.btn_back_patient_signup);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentBack = new Intent(signupPatient.this, MainActivity.class);
-                startActivity(intentBack);
-            }
-        });
 
         initializeView();
 

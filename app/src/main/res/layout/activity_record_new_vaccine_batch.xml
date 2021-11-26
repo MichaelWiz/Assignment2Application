@@ -156,24 +156,14 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right">
-
-            <Button
-                android:id="@+id/btn_back_record"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="Back" />
 
             <Button
                 android:id="@+id/btn_add_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ADD" />
-        </LinearLayout>
+                android:text="ADD"
+                android:layout_gravity="right"/>
+
     </LinearLayout>
 
 </LinearLayout>

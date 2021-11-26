@@ -29,7 +29,7 @@ public class AddNewVaccineType extends AppCompatActivity {
     EditText editTextManufacturer;
     Vaccine vaccine;
     Button addBtn;
-    Button backBtn;
+
     List<String> vaccinesArray = new ArrayList<>();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -43,7 +43,6 @@ public class AddNewVaccineType extends AppCompatActivity {
         editTextVaccineName =findViewById(R.id.edit_text_vaccine_name);
         editTextManufacturer = findViewById(R.id.edit_text_manufacturer);
         addBtn = findViewById(R.id.btn_add_vaccine);
-        backBtn = findViewById(R.id.btn_back_vaccine);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,13 +73,7 @@ public class AddNewVaccineType extends AppCompatActivity {
                 }
             }
         });
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AddNewVaccineType.this, adminMenu.class));
-                finish();
-            }
-        });
+
     }
     private void upload(Vaccine vaccine) {
         db.collection("Vaccines")

@@ -23,7 +23,6 @@ public class AddNewCenter extends AppCompatActivity {
     private EditText editTextCenterName;
     private EditText editTextAddress;
     private Button addBtn;
-    private Button backBtn;
     private HealthcareCentre hcc;
     private FirebaseFirestore db;
 
@@ -35,14 +34,6 @@ public class AddNewCenter extends AppCompatActivity {
         editTextCenterName = findViewById(R.id.edit_text_center_name_add);
         editTextAddress = findViewById(R.id.edit_text_address_add);
         addBtn = findViewById(R.id.btn_add_center);
-        backBtn = findViewById(R.id.btn_back_center);
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AddNewCenter.this, adminMenu.class));
-            }
-        });
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override

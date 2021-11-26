@@ -36,19 +36,23 @@
         <activity
             android:name=".signupPatient"
             android:label="Patient Sign Up Form"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".signupAdmin"
             android:label="Admin Sign Up Form"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".loginPage"
             android:label="Login Page"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:label="@string/add_vaccine_name"
             android:name=".AddNewVaccineType"
-            android:exported="true">
+            android:exported="true"
+            android:parentActivityName=".adminMenu">
 
 
         </activity>
@@ -57,14 +61,16 @@
         <activity
             android:label="@string/add_healthcare_center_name"
             android:name=".AddNewCenter"
-            android:exported="true">
+            android:exported="true"
+            android:parentActivityName=".adminMenu">
 
         </activity>
 
         <activity
             android:label="@string/record_new_vaccine_batch_name"
             android:name=".RecordNewVaccineBatch"
-            android:exported="true">
+            android:exported="true"
+            android:parentActivityName=".adminMenu">
 
         </activity>
         <activity

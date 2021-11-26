@@ -41,7 +41,6 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
     ListView listViewVaccine;
     ImageButton imageButtonCalender;
     Button addBtn;
-    Button backBtn;
     Batch batch;
 
     static Admin ADMIN;
@@ -59,7 +58,6 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         editTextBatchNumber = findViewById(R.id.edit_text_vaccine_batch_number_record);
         editTextQuantity = findViewById(R.id.edit_text_quantity_record);
         addBtn = findViewById(R.id.btn_add_record);
-        backBtn = findViewById(R.id.btn_back_record);
         imageButtonCalender = findViewById(R.id.image_button_calendar_icon);
 
         getCurrentVaccine ();
@@ -74,12 +72,6 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RecordNewVaccineBatch.this, adminMenu.class));
-            }
-        });
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override

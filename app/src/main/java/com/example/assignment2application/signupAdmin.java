@@ -29,7 +29,6 @@ import java.util.Random;
 public class signupAdmin extends AppCompatActivity {
 
     public static Admin ADMIN;
-    Button btnBack;
     EditText editTextAdminName;
     EditText editTextAdminCentreName;
     EditText editTextAdminUsername;
@@ -49,17 +48,6 @@ public class signupAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_admin);
         editTextAdminConfirmPassword = findViewById(R.id.edit_text_admin_signup_confirm_password);
-        btnBack = findViewById(R.id.btn_back_admin_signup);
-
-
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentBack = new Intent(signupAdmin.this, MainActivity.class);
-                startActivity(intentBack);
-            }
-        });
 
         initializeView();
 

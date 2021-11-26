@@ -31,11 +31,9 @@ public class loginPage extends AppCompatActivity {
 
     public static Patient PATIENT;
     public static Admin ADMIN;
-
     EditText editTextLoginUsername;
     EditText editTextLoginPassword;
     Button btnLogin;
-    Button btnBack;
     CheckBox checkBoxShowPassword;
     List<Admin> adminArray = new ArrayList<Admin>();
     List<Patient> patientArray = new ArrayList<Patient>();
@@ -93,16 +91,6 @@ public class loginPage extends AppCompatActivity {
 
         });
 
-
-
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentBack = new Intent(loginPage.this, MainActivity.class);
-                startActivity(intentBack);
-            }
-        });
     }
 
     private void getLoginInfo(){
@@ -133,7 +121,6 @@ public class loginPage extends AppCompatActivity {
         editTextLoginPassword = findViewById(R.id.edit_text_login_password);
         checkBoxShowPassword = findViewById(R.id.checkbox_show_password);
         btnLogin = findViewById(R.id.btn_login);
-        btnBack = findViewById(R.id.btn_back_login);
     }
 
 }

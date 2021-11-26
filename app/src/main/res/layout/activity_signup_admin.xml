@@ -10,11 +10,6 @@
     tools:context=".signupAdmin">
 
 
-    <Button
-        android:id="@+id/btn_back_admin_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back" />
 
     <LinearLayout
         android:layout_width="match_parent"
