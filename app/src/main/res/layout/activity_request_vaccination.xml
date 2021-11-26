@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:autofillHints="Select Vaccine Type"
         app:layout_constraintTop_toBottomOf="@id/text_view_request_vaccine"
-        android:backgroundTint="@color/white"
+        android:background="@color/white"
 
         />
 
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:autofillHints="Select Healthcare Centre"
         app:layout_constraintTop_toBottomOf="@+id/text_view_request_centre"
-        android:backgroundTint="@color/white" />
+        android:background="@color/white" />
 
     <TextView
         android:id="@+id/text_view_request_vaccine_batch"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:autofillHints="Select Vaccine Batch No"
         app:layout_constraintTop_toBottomOf="@+id/text_view_request_vaccine_batch"
-        android:backgroundTint="@color/white"/>
+        android:background="@color/white"/>
 
     <TextView
         android:id="@+id/text_view_request_date"

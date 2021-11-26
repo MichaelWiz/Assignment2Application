@@ -63,9 +63,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         imageButtonCalender = findViewById(R.id.image_button_calendar_icon);
 
         getCurrentVaccine ();
-        //getAdmin();
 
-        //textViewCenter.setText(ADMIN.getAdminCentre());
         imageButtonCalender.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -154,21 +152,6 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         });
     }
 
-//    private void getAdmin () {
-//        db.collection("Admins")
-//                .whereEqualTo("adminID", loginPage.USER_ID)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-//                            Admin admin = documentSnapshot.toObject(Admin.class);
-//                            ADMIN = admin;
-//                            finish();
-//                            break;
-//                        }
-//                    }
-//              });
-//   }
+
 
 }
