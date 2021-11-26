@@ -87,7 +87,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
 
                     for(String v:vaccinesArray) {
                         if(v.equalsIgnoreCase(vaccineId)) {
-                            batch = new Batch(batchNumber, date, qty, vaccineId,ADMIN.getAdminName());
+                            batch = new Batch(batchNumber, date, qty, vaccineId);
 
                             db.collection("Batches")
                                     .document(editTextBatchNumber.getText().toString())

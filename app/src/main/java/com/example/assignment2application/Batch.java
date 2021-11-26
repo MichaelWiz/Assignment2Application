@@ -8,6 +8,7 @@ public class Batch{
     public long quantityAdministered;
     public String centreName;
     public String vaccineID;
+
     public Batch() {
     }
 
@@ -69,11 +70,10 @@ public class Batch{
         setVaccineID(vaccineID);
     }
 
-    public Batch(String batchNo, String expiryDate, long quantityAvailable, String vaccineID,String centreName) {
+    public Batch(String batchNo, String expiryDate, long quantityAvailable, String vaccineID) {
         this.batchNo = batchNo;
         this.expiryDate = expiryDate;
         this.quantityAvailable = quantityAvailable;
-        setCentreName(centreName);
         setVaccineID(vaccineID);
     }
 
