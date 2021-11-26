@@ -1,23 +1,19 @@
 package com.example.assignment2application;
-
-<<<<<<< HEAD
-public class Vaccine {
-    private String vaccineID;
-    private String vaccineName;
-    private String manufacturer;
-
-    public Vaccine(String vaccineID, String vaccineName, String manufacturer) {
-        this.vaccineID = vaccineID;
-        this.vaccineName = vaccineName;
-        this.manufacturer = manufacturer;
-=======
 import java.io.Serializable;
 
 public class Vaccine{
-    private String vaccineID;
-    private String vaccineName;
-    private String manufacturer;
+    public String vaccineID;
+    public String vaccineName;
+    public String manufacturer;
     static int vaccineNum;
+
+    public static int getVaccineNum() {
+        return vaccineNum;
+    }
+
+    public static void setVaccineNum(int vaccineNum) {
+        Vaccine.vaccineNum = vaccineNum;
+    }
 
     public Vaccine(){
 
@@ -32,7 +28,7 @@ public class Vaccine{
         setVaccineID(String.format("v"+(++vaccineNum)));
         setVaccineName(vaccineName);
         setManufacturer(manufacturer);
->>>>>>> origin/weeyuen
+
     }
 
     public String getVaccineID() {

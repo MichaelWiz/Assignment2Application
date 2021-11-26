@@ -20,9 +20,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -56,7 +53,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         setContentView(R.layout.activity_record_new_vaccine_batch);
 
         dateTextView = findViewById(R.id.edit_text_expiry_date_record);
-        textViewCenter = findViewById(R.id.text_view_healthcareCentre);
+        //textViewCenter = findViewById(R.id.text_view_healthcareCentre);
         listViewVaccine = findViewById(R.id.list_view_vaccine);
         editTextVaccineID = findViewById(R.id.edit_text_vaccine_id_record);
         editTextBatchNumber = findViewById(R.id.edit_text_vaccine_batch_number_record);
@@ -68,7 +65,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         getCurrentVaccine ();
         //getAdmin();
 
-        //textViewCenter.setText(ADMIN.getAdminCentreI());
+        //textViewCenter.setText(ADMIN.getAdminCentre());
         imageButtonCalender.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -82,7 +79,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(RecordNewVaccineBatch.this, adminMenu.class));
+                startActivity(new Intent(RecordNewVaccineBatch.this, adminMenu.class));
             }
         });
 
@@ -110,7 +107,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(RecordNewVaccineBatch.this,
                                                     "Added Successfully", Toast.LENGTH_SHORT).show();
-                                           // startActivity(new Intent(RecordNewVaccineBatch.this, adminMenu.class));
+                                           startActivity(new Intent(RecordNewVaccineBatch.this, adminMenu.class));
                                             finish();
                                         }
                                     })
@@ -157,21 +154,21 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         });
     }
 
-    /*private void getAdmin () {
-        db.collection("Admins")
-                .whereEqualTo("adminID", loginPage.USER_ID)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                            Admin admin = documentSnapshot.toObject(Admin.class);
-                            ADMIN = admin;
-                            finish();
-                            break;
-                        }
-                    }
-              });
-   }*/
+//    private void getAdmin () {
+//        db.collection("Admins")
+//                .whereEqualTo("adminID", loginPage.USER_ID)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+//                            Admin admin = documentSnapshot.toObject(Admin.class);
+//                            ADMIN = admin;
+//                            finish();
+//                            break;
+//                        }
+//                    }
+//              });
+//   }
 
 }

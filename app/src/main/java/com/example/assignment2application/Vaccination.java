@@ -1,13 +1,18 @@
 package com.example.assignment2application;
 
 public class Vaccination {
-    private String VaccinationID;
-    private String VaccineType;
-    private String Centre;
-    private String VaccineBatch;
-    private String AppointmentDate;
-    private String Status;
-    private String Remark;
+    public String VaccinationID;
+    public String VaccineType;
+    public String Centre;
+    public String VaccineBatch;
+    public String AppointmentDate;
+    public String Status;
+    public String Remark;
+    public String Username;
+
+    public Vaccination(){
+
+    }
 
     public String getStatus() {
         return Status;

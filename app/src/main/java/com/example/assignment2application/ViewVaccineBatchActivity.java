@@ -74,7 +74,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
         Button manageVaccinationBtn = findViewById(R.id.manage_vaccination_button);
 
         availableBatchArrayList =  new ArrayList<Batch>();
-        availableBatchAdapter = new BatchAdapter(MainActivity.this, availableBatchArrayList);
+        availableBatchAdapter = new BatchAdapter(ViewVaccineBatchActivity.this, availableBatchArrayList);
         availableBatchRecyclerView.setAdapter(availableBatchAdapter);
         BatchListListener();
 
@@ -83,7 +83,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
 
         batchNumberSpinner = findViewById(R.id.batch_number_spinner);
         List<String> batchNumberList = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, batchNumberList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewVaccineBatchActivity.this, android.R.layout.simple_spinner_item, batchNumberList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         batchNumberSpinner.setAdapter(adapter);
         db.collection("Batches")
@@ -102,7 +102,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
                             adapter.notifyDataSetChanged();
                         }
                         else{
-                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ViewVaccineBatchActivity.this, "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -113,19 +113,19 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedBatch = batchNumberSpinner.getSelectedItem().toString();
                 LinearLayout batchInfo = findViewById(R.id.linear_layout_for_batch_info);
-                if (selectedBatch == "Select batch number"){
+                if (selectedBatch.equals("Select batch number") ){
                     batchInfo.setVisibility(View.GONE);
                 }
                 else {
                     batchInfo.setVisibility(View.VISIBLE);
                     vaccinationArrayList = new ArrayList<Vaccination>();
-                    vaccinationAdapter = new VaccinationAdapter(MainActivity.this, vaccinationArrayList);
+                    vaccinationAdapter = new VaccinationAdapter(ViewVaccineBatchActivity.this, vaccinationArrayList);
                     vaccinationRecyclerView.setAdapter(vaccinationAdapter);
                     VaccinationListListener(selectedBatch);
 
                     vaccinationNumberSpinner = findViewById(R.id.vaccination_number_spinner);
                     List<String> vaccinationNumberList = new ArrayList<>();
-                    ArrayAdapter<String> vaccinationNumberAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, vaccinationNumberList);
+                    ArrayAdapter<String> vaccinationNumberAdapter = new ArrayAdapter<String>(ViewVaccineBatchActivity.this, android.R.layout.simple_spinner_item, vaccinationNumberList);
                     vaccinationNumberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     vaccinationNumberSpinner.setAdapter(vaccinationNumberAdapter);
                     try {
@@ -196,7 +196,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                                 Vaccination selectedVaccinationNum = documentSnapshot.toObject(Vaccination.class);
-                                                selectedVaccination.setText(selectedVaccinationNum.vaccinationID);
+                                                selectedVaccination.setText(selectedVaccinationNum.VaccinationID);
 
                                             }
                                         });
@@ -209,11 +209,11 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
                                 }
                             });
                         }catch (Exception e){
-                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ViewVaccineBatchActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }catch (Exception e){
-                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ViewVaccineBatchActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -231,7 +231,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
         manageVaccinationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent manageVaccinationIntent = new Intent(MainActivity.this, ManageVaccinationActivity.class);
+                Intent manageVaccinationIntent = new Intent(ViewVaccineBatchActivity.this, ManageVaccinationActivity.class);
                 manageVaccinationIntent.putExtra("BATCHNUMBER",selectedBatchNum.getText().toString());
                 manageVaccinationIntent.putExtra("VACCINATIONNUMBER", selectedVaccination.getText().toString());
                 startActivity(manageVaccinationIntent);
@@ -241,7 +241,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
         try {
 
         }catch (Exception e){
-            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(ViewVaccineBatchActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
 
@@ -268,7 +268,7 @@ public class ViewVaccineBatchActivity extends AppCompatActivity {
                                 try {
                                     availableBatchArrayList.add(dc.getDocument().toObject(Batch.class));
                                 }catch (Exception e){
-                                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ViewVaccineBatchActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
 
                             }

@@ -10,11 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import com.google.android.gms.tasks.OnFailureListener;
+
+import com.google.firebase.firestore.DocumentReference;
+
 
 public class AddNewCenter extends AppCompatActivity {
 
@@ -38,7 +40,7 @@ public class AddNewCenter extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(AddNewCenter.this, adminMenu.class));
+                startActivity(new Intent(AddNewCenter.this, adminMenu.class));
             }
         });
 
@@ -69,7 +71,7 @@ public class AddNewCenter extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Toast.makeText(AddNewCenter.this,
                                 "Added Successfully", Toast.LENGTH_SHORT).show();
-                        //startActivity(new Intent(AddNewCenter.this, adminMenu.class));
+                        startActivity(new Intent(AddNewCenter.this, adminMenu.class));
                         finish();
                     }
                 })

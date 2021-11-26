@@ -33,32 +33,32 @@ public class adminMenu extends AppCompatActivity {
         btnViewVaccineBatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(adminMenu.this, ViewVaccineBatchActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(adminMenu.this, ViewVaccineBatchActivity.class);
+                startActivity(intent);
             }
         });
 
         btnRecordVaccineBatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(adminMenu.this, RecordNewVaccineBatch.class);
-//                startActivity(intent);
+                Intent intent = new Intent(adminMenu.this, RecordNewVaccineBatch.class);
+                startActivity(intent);
             }
         });
 
         btnAddCentre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(adminMenu.this , AddNewCentre.class);
-//                startActivity(intent);
+                Intent intent = new Intent(adminMenu.this , AddNewCenter.class);
+                startActivity(intent);
             }
         });
 
         btnAddVaccine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(adminMenu.this, AddNewVaccineType.class);
-//                startActivity(intent);
+                Intent intent = new Intent(adminMenu.this, AddNewVaccineType.class);
+                startActivity(intent);
             }
         });
     }

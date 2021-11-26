@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Assignment2Application</string>
+    <string name="add_vaccine_name">Add New Vaccine Type</string>
+    <string name="add_healthcare_center_name">Add New Healthcare Centre</string>
+    <string name="record_new_vaccine_batch_name">Record New Vaccine Batch</string>
 </resources>

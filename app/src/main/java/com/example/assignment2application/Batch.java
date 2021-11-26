@@ -3,11 +3,11 @@ package com.example.assignment2application;
 import java.io.Serializable;
 
 public class Batch{
-    private String batchNo;
-    private String expiryDate;
-    private long quantityAvailable;
-    private long quantityAdministered;
-    private String centreName;
+    public String batchNo;
+    public String expiryDate;
+    public long quantityAvailable;
+    public long quantityAdministered;
+    public String centreName;
 
     public String getCentreName() {
         return centreName;
@@ -17,7 +17,11 @@ public class Batch{
         this.centreName = centreName;
     }
 
-    private String vaccineID;
+    public String vaccineID;
+
+    public void setQuantityAvailable(long quantityAvailable) {
+        this.quantityAvailable = quantityAvailable;
+    }
 
     public String getBatchNo() {
         return batchNo;

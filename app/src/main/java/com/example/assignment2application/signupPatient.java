@@ -65,7 +65,7 @@ public class signupPatient extends AppCompatActivity {
             String patientPassword = editTextPatientPassword.getText().toString();
             String patientEmail = editTextPatientEmail.getText().toString();
 
-            //Validate here. Check if anything is empty and ay other kind of sanitation.
+
 
 
             Patient patient = new Patient(patientName, patientID, patientUsername, patientPassword, patientEmail);

@@ -77,7 +77,7 @@ public class AddNewVaccineType extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(AddNewVaccineType.this, adminMenu.class));
+                startActivity(new Intent(AddNewVaccineType.this, adminMenu.class));
                 finish();
             }
         });
@@ -91,7 +91,7 @@ public class AddNewVaccineType extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Toast.makeText(AddNewVaccineType.this,
                                 "Added Successfully", Toast.LENGTH_SHORT).show();
-                        //startActivity(new Intent(AddNewVaccineType.this, adminMenu.class));
+                        startActivity(new Intent(AddNewVaccineType.this, adminMenu.class));
                         finish();
                     }
                 })

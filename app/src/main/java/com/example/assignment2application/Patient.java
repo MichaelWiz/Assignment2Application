@@ -4,13 +4,19 @@ public class Patient {
 
     static String COLLECTION_NAME = "Patients";
 
-    private String patientName;
-    private String patientID;
-    private String patientUsername;
-    private String patientPassword;
-    private String patientEmail;
+    public String patientName;
+    public String patientID;
+    public String patientUsername;
+    public String patientPassword;
+    public String patientEmail;
 
+    public static String getCollectionName() {
+        return COLLECTION_NAME;
+    }
 
+    public static void setCollectionName(String collectionName) {
+        COLLECTION_NAME = collectionName;
+    }
 
     public Patient(String patientName, String patientID, String patientUsername, String patientPassword, String patientEmail){
         this.patientName = patientName;
