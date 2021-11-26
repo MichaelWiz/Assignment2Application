@@ -63,7 +63,6 @@
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:hint="Enter Vaccine ID here"
-                android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="12sp" />
@@ -92,7 +91,6 @@
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:hint="Enter Vaccine Batch Number here"
-                android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="12sp" />
