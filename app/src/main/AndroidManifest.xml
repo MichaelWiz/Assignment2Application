@@ -12,11 +12,33 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
+        </activity>
+
+        <activity
+            android:label="@string/add_vaccine_name"
+            android:name=".AddNewVaccineType"
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:label="@string/add_healthcare_center_name"
+            android:name=".AddNewCenter"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:label="@string/record_new_vaccine_batch_name"
+            android:name=".RecordNewVaccineBatch"
+            android:exported="true">
+
         </activity>
     </application>
 
