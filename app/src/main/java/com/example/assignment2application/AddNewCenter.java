@@ -38,7 +38,7 @@ public class AddNewCenter extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddNewCenter.this, AddNewVaccineType.class));
+                //startActivity(new Intent(AddNewCenter.this, adminMenu.class));
             }
         });
 
@@ -69,7 +69,7 @@ public class AddNewCenter extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Toast.makeText(AddNewCenter.this,
                                 "Added Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AddNewCenter.this, AddNewVaccineType.class));
+                        //startActivity(new Intent(AddNewCenter.this, adminMenu.class));
                         finish();
                     }
                 })

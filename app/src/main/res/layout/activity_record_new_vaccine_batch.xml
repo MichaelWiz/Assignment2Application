@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecordNewVaccineBatch"
+    android:background="@drawable/gradle_bg"
     android:orientation="vertical">
 
     <TextView
@@ -11,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/white"
         android:layout_marginBottom="16dp"
         android:text="Healthcare Center"
-        android:textSize="24sp"
+        android:textSize="32sp"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/text_view_list_vaccine"
@@ -22,14 +24,16 @@
         android:gravity="left"
         android:layout_marginBottom="16dp"
         android:text="List of Vaccine:"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/teal_200"
         android:textSize="18sp"
         android:textStyle="italic"/>
 
     <ListView
+        android:background="@color/white"
         android:id="@+id/list_view_vaccine"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+
         android:padding="6dp"/>
 
     <LinearLayout
@@ -47,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:textColor="@color/white"
                 android:layout_marginBottom="16dp"
                 android:text="Vaccine ID      :"
                 android:textSize="18sp"/>
@@ -57,6 +62,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:hint="Enter Vaccine ID here"
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:inputType="text"/>
 
@@ -72,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:textColor="@color/white"
                 android:layout_marginBottom="16dp"
                 android:text="Batch Number:"
                 android:textSize="18sp"/>
@@ -83,6 +91,8 @@
                 android:textSize="12sp"
                 android:hint="Enter Vaccine Batch Number here"
                 android:gravity="center"
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/white"
                 android:inputType="text"/>
         </LinearLayout>
 
@@ -98,7 +108,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="12dp"
                 android:src="@drawable/calendar"
-                android:background="@color/white"
+                android:background="@drawable/gradle_bg"
                 android:scaleType="centerCrop"
                 android:contentDescription="This is a calendar button"
                 tools:ignore = "HardcodedText"/>
@@ -111,6 +121,8 @@
                 android:hint="Click Calendar to choose Expiry Date"
                 android:gravity="left"
                 android:enabled="false"
+                android:backgroundTint="@color/white"
+                android:textColorHint="@color/white"
                 android:layout_marginTop="35dp"
                 android:inputType="date"/>
         </LinearLayout>
@@ -126,6 +138,7 @@
                 android:gravity="left"
                 android:layout_marginBottom="16dp"
                 android:text="Quantity           :"
+                android:textColor="@color/white"
                 android:textSize="18sp"/>
 
             <EditText
@@ -134,6 +147,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:hint="Enter Quantity here"
+                android:backgroundTint="@color/white"
+                android:textColorHint="@color/white"
                 android:gravity="center"/>
         </LinearLayout>
 

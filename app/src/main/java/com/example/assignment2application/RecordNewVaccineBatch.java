@@ -68,7 +68,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         getCurrentVaccine ();
         //getAdmin();
 
-        //textViewCenter.setText(ADMIN.getHealthcareCentre());
+        //textViewCenter.setText(ADMIN.getAdminCentreI());
         imageButtonCalender.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -82,7 +82,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RecordNewVaccineBatch.this, AddNewCenter.class));
+                //startActivity(new Intent(RecordNewVaccineBatch.this, adminMenu.class));
             }
         });
 
@@ -110,7 +110,7 @@ public class RecordNewVaccineBatch extends AppCompatActivity {
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(RecordNewVaccineBatch.this,
                                                     "Added Successfully", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(RecordNewVaccineBatch.this, AddNewCenter.class));
+                                           // startActivity(new Intent(RecordNewVaccineBatch.this, adminMenu.class));
                                             finish();
                                         }
                                     })

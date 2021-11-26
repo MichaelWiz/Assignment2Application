@@ -8,10 +8,19 @@ public class Vaccine{
     private String manufacturer;
     static int vaccineNum;
 
+    public Vaccine(){
+
+    }
+    public Vaccine (String vaccineID,String vaccineName,String manufacturer){
+        setVaccineID(vaccineID);
+        setVaccineName(vaccineName);
+        setManufacturer(manufacturer);
+    }
+
     public Vaccine(String vaccineName, String manufacturer) {
         setVaccineID(String.format("v"+(++vaccineNum)));
-        this.vaccineName = vaccineName;
-        this.manufacturer = manufacturer;
+        setVaccineName(vaccineName);
+        setManufacturer(manufacturer);
     }
 
     public String getVaccineID() {

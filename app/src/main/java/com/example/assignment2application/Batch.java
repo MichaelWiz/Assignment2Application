@@ -65,8 +65,8 @@ public class Batch{
 
     public Batch(String batchNo,String centreName,String expiryDate,String vaccineID
     ,long quantityAdministered,long quantityAvailable){
-        this.batchNo = batchNo;
-        this.expiryDate = expiryDate;
+        setBatchNo(batchNo);
+        setExpiryDate(expiryDate);
         setCentreName(centreName);
         setQuantityAdministered(quantityAdministered);
         this.quantityAvailable = quantityAvailable;
