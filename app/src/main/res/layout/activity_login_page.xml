@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginPage"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".loginPage">
+
     <Button
         android:id="@+id/btn_back_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        />
+        android:text="Back" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:id="@+id/edit_text_login_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Username"/>
+            android:hint="Enter Username" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,15 +49,20 @@
             android:id="@+id/edit_text_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Password"/>
+            android:hint="Enter Password"
+            android:inputType="textPassword" />
     </LinearLayout>
 
-
+    <CheckBox
+        android:id="@+id/checkbox_show_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Password" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:text="Login" />
 </LinearLayout>

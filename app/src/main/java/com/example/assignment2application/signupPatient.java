@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -127,6 +128,7 @@ public class signupPatient extends AppCompatActivity {
 
 
     public void initializeView(){
+
         editTextPatientName = findViewById(R.id.edit_text_patient_signup_name);
         editTextPatientID = findViewById(R.id.edit_text_patient_signup_id);
         editTextPatientUsername = findViewById(R.id.edit_text_patient_signup_username);

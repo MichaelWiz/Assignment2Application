@@ -29,7 +29,6 @@ import java.util.Random;
 public class signupAdmin extends AppCompatActivity {
 
     public static Admin ADMIN;
-
     Button btnBack;
     EditText editTextAdminName;
     EditText editTextAdminCentreName;
@@ -37,11 +36,11 @@ public class signupAdmin extends AppCompatActivity {
     EditText editTextAdminPassword;
     EditText editTextAdminConfirmPassword;
     EditText editTextAdminEmail;
-    ListView listViewCentreList;
+    ListView listViewCentre;
     Button btnSubmit;
     FirebaseFirestore db;
 
-    List<String> centreList = new ArrayList<>();
+    private List<String> centreList = new ArrayList<>();
 
     private Admin admin;
 
@@ -52,6 +51,8 @@ public class signupAdmin extends AppCompatActivity {
         editTextAdminConfirmPassword = findViewById(R.id.edit_text_admin_signup_confirm_password);
         btnBack = findViewById(R.id.btn_back_admin_signup);
 
+
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +62,8 @@ public class signupAdmin extends AppCompatActivity {
         });
 
         initializeView();
-        viewCentreList();
+
+
 
         editTextAdminName.addTextChangedListener(signupTextWatcher);
         editTextAdminCentreName.addTextChangedListener(signupTextWatcher);
@@ -88,27 +90,11 @@ public class signupAdmin extends AppCompatActivity {
 
     }
 
-    private void viewCentreList(){
-        db.collection("HealthcareCentres").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
-                for (DocumentSnapshot snapshot: documentSnapshots){
-                    centreList.add(snapshot.getString("centerName"));
-                }
-                ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext()
-                        , android.R.layout.simple_selectable_list_item, centreList);
-                adapter.notifyDataSetChanged();
-                listViewCentreList.setAdapter(adapter);
-
-            }
-        });
-    }
 
 
     private TextWatcher signupTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
         }
 
         @Override
@@ -159,7 +145,6 @@ public class signupAdmin extends AppCompatActivity {
         editTextAdminUsername = findViewById(R.id.edit_text_admin_signup_username);
         editTextAdminPassword = findViewById(R.id.edit_text_admin_signup_password);
         editTextAdminEmail = findViewById(R.id.edit_text_admin_signup_email);
-        listViewCentreList = findViewById(R.id.list_view_centre_list);
         btnSubmit = findViewById(R.id.btn_submit_admin_signup);
     }
 

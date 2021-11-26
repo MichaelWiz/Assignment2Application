@@ -47,7 +47,6 @@ public class RequestVaccination extends AppCompatActivity {
     Button btnSubmit;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     android.app.DatePickerDialog.OnDateSetListener onDateSetListener;
-    //List<Vaccine>
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,22 +54,9 @@ public class RequestVaccination extends AppCompatActivity {
         setContentView(R.layout.activity_request_vaccination);
 
         spinnerVaccine = findViewById(R.id.spinner_request_vaccine);
-        ArrayAdapter adapterVaccine = ArrayAdapter.createFromResource(this,
-                R.array.vaccines, android.R.layout.simple_spinner_item);
-        adapterVaccine.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerVaccine.setAdapter(adapterVaccine);
-
         spinnerCentre = findViewById(R.id.spinner_request_centre);
-        ArrayAdapter adapterCentre = ArrayAdapter.createFromResource(this,
-                R.array.centres, android.R.layout.simple_spinner_item);
-        adapterCentre.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCentre.setAdapter(adapterCentre);
-
         spinnerVaccineBatch = findViewById(R.id.spinner_request_vaccine_batch);
-        ArrayAdapter adapterVaccineBatch = ArrayAdapter.createFromResource(this,
-                R.array.vaccineBatch, android.R.layout.simple_spinner_item);
-        adapterVaccineBatch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerVaccineBatch.setAdapter(adapterVaccineBatch);
+
 
 
         datePicker = findViewById(R.id.text_view_select_date);
@@ -78,16 +64,7 @@ public class RequestVaccination extends AppCompatActivity {
         calendarBtn = findViewById(R.id.image_btn_calendar);
         btnSubmit= findViewById(R.id.btn_request_submit);
         openDialog();
-        //enabledSubmitButton();
-//        String appointmentDate = datePicker.getText().toString();
-//        String vaccineSelection = spinnerVaccine.getSelectedItem().toString();
-//        String vaccineBatchSelection = spinnerVaccineBatch.getSelectedItem().toString();
-//        String centreSelection = spinnerCentre.getSelectedItem().toString();
-//        if (!appointmentDate.equals("dd/mm/yyyy") && !vaccineSelection.equals("-")
-//                && !vaccineBatchSelection.equals("-") && !centreSelection.equals("-")){
-//            btnSubmit.setEnabled(true);
-//        }
-
+        enableSubmitButton();
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,37 +91,76 @@ public class RequestVaccination extends AppCompatActivity {
 
 
 
+
     }
 
-    private void openDialog(){
-        List<String> vaccineList =  new ArrayList<>();//Arrays.asList("Pfizer", "Sinovac");
-        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, vaccineList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerVaccine.setAdapter(adapter);
-        db.collection("Vaccines")
-                .whereEqualTo("vaccineID", Query.Direction.ASCENDING)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            vaccineList.add("Select Vaccine Type");
-                            for (QueryDocumentSnapshot document :task.getResult()){
-                                String vaccine = document.getString("vaccineID");
-                                vaccineList.add(vaccine);
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-                    }
-                });
+
+
+
+    private void enableSubmitButton(){
         spinnerVaccine.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectVaccine = adapterView.getItemAtPosition(i).toString();
-                //LinearLayout batchInfo = findViewById(R.id.linear_layout_vaccine_list);
-                if (spinnerVaccine.getSelectedItem() != "Select Vaccine "){
-                    btnSubmit.setEnabled(true);
+                String vaccineSelection = spinnerVaccine.getSelectedItem().toString();
+                if (vaccineSelection.equals("Select Vaccine")){
+                    btnSubmit.setEnabled(false);
+                }else {
+                    spinnerCentre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            String centreSelection = spinnerCentre.getSelectedItem().toString();
+                            if (centreSelection.equals("Select Healthcare Centre")){
+                                btnSubmit.setEnabled(false);
+                            }else {
+                                spinnerVaccineBatch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                        String vaccineBatchSelection = spinnerVaccineBatch.getSelectedItem().toString();
+                                        if (vaccineBatchSelection.equals("Select Vaccine Batch")){
+                                            btnSubmit.setEnabled(false);
+                                        }else {
+                                            datePicker.addTextChangedListener(new TextWatcher() {
+                                                @Override
+                                                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                                }
+
+                                                @Override
+                                                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                                }
+
+                                                @Override
+                                                public void afterTextChanged(Editable editable) {
+                                                    String date = datePicker.getText().toString().trim();
+                                                    if (!date.equals("dd/mm/yyyy")){
+                                                        btnSubmit.setEnabled(true);
+                                                    }
+                                                }
+                                            });
+
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                    }
+                                });
+                            }
+
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
                 }
+
             }
 
             @Override
@@ -152,6 +168,79 @@ public class RequestVaccination extends AppCompatActivity {
 
             }
         });
+
+
+
+
+    }
+
+
+    private void openDialog() {
+        List<String> vaccineList = new ArrayList<>();
+        ArrayAdapter adapterVaccine = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, vaccineList);
+        adapterVaccine.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerVaccine.setAdapter(adapterVaccine);
+        db.collection("Vaccines")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            vaccineList.add("Select Vaccine");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String vaccineInfo = document.getString("vaccineID") + " ( " + document.getString("manufacturer") + " ) ";
+                                vaccineList.add(vaccineInfo);
+                            }
+                            adapterVaccine.notifyDataSetChanged();
+                        }
+                    }
+                });
+
+        List<String> centreList = new ArrayList<>();
+        ArrayAdapter adapterCentre = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, centreList);
+        adapterCentre.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCentre.setAdapter(adapterCentre);
+        db.collection("HealthcareCentres")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            centreList.add("Select Healthcare Centre");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String centreInfo = document.getString("centreName") + " ( " + document.getString("address") + " )";
+
+                                centreList.add(centreInfo);
+
+                            }
+                            adapterCentre.notifyDataSetChanged();
+                        }
+                    }
+                });
+
+        List<String> batchList =  new ArrayList<>();
+        ArrayAdapter adapterBatch = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, batchList);
+        adapterBatch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerVaccineBatch.setAdapter(adapterBatch);
+        db.collection("Batches")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            batchList.add("Select Vaccine Batch");
+                            for (QueryDocumentSnapshot document :task.getResult()){
+                                String batchInfo = document.getString("batchNo") + "(Expiry Date "
+                                        + document.getString("expiryDate") + " )";
+
+
+                                batchList.add(batchInfo);
+
+                            }
+                            adapterBatch.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 
 

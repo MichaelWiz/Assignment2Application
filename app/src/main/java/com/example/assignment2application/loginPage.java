@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -32,6 +36,7 @@ public class loginPage extends AppCompatActivity {
     EditText editTextLoginPassword;
     Button btnLogin;
     Button btnBack;
+    CheckBox checkBoxShowPassword;
     List<Admin> adminArray = new ArrayList<Admin>();
     List<Patient> patientArray = new ArrayList<Patient>();
     public static String USER_ID;
@@ -44,8 +49,21 @@ public class loginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
         initializeView();
         getLoginInfo();
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+
+
+        checkBoxShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    editTextLoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    editTextLoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View view) {
                 for (Patient p: patientArray){
                     if (p.getPatientUsername().equalsIgnoreCase(editTextLoginUsername.getText().toString())
@@ -53,8 +71,8 @@ public class loginPage extends AppCompatActivity {
                         startActivity(new Intent(loginPage.this, RequestVaccination.class));
                         finish();
                         break;
-                    }else{
-                        Toast.makeText(loginPage.this, "Wrong Username or Password!",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(loginPage.this, "Check Username or Password", Toast.LENGTH_SHORT).show();
                     }
                 }
                 for (Admin a: adminArray){
@@ -63,14 +81,20 @@ public class loginPage extends AppCompatActivity {
                         startActivity(new Intent(loginPage.this, adminMenu.class));
                         finish();
                         break;
-                    }else{
-                        Toast.makeText(loginPage.this, "Wrong Username or Password!",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(loginPage.this, "Check Username or Password", Toast.LENGTH_SHORT).show();
                     }
                 }
+
+
+
             }
 
 
         });
+
+
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +131,7 @@ public class loginPage extends AppCompatActivity {
     public void initializeView(){
         editTextLoginUsername = findViewById(R.id.edit_text_login_username);
         editTextLoginPassword = findViewById(R.id.edit_text_login_password);
+        checkBoxShowPassword = findViewById(R.id.checkbox_show_password);
         btnLogin = findViewById(R.id.btn_login);
         btnBack = findViewById(R.id.btn_back_login);
     }
