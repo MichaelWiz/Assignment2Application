@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment2Application">
         <activity
+            android:name=".ViewVaccineBatchActivity"
+            android:exported="true"
+            android:label="Manage Vaccination"
+            android:parentActivityName=".ViewVaccineBatchActivity"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
